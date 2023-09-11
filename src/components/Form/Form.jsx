@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import 'react-toastify/dist/ReactToastify.css';
 
 const INITIAL_STATE = {
@@ -60,5 +61,9 @@ class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  addContact: PropTypes.func,
+};
 
 export default Form;

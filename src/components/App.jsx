@@ -1,9 +1,10 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
 import ContactsList from './ContactsList/ContactsList';
 import Filter from './Filter/Filter';
 import Form from './Form/Form';
+import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
+
 
 const INITIAL_STATE = {
   contacts: [],
