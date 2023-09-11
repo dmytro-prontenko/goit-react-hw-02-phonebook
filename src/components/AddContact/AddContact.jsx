@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const AddContact = props => {
   const { inputChanger, inputName, inputNumber, addContact } = props;
@@ -41,5 +42,12 @@ const AddContact = props => {
     </>
   );
 };
+
+AddContact.propTypes = {
+  inputChanger: PropTypes.func,
+  inputName: PropTypes.func,
+  inputNumber: PropTypes.func,
+  addContact:PropTypes.func,
+}
 
 export default AddContact;
