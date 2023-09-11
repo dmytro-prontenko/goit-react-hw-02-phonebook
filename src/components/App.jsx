@@ -39,22 +39,31 @@ class App extends React.Component {
     }
   };
 
-  filteredContact = () => {
-    return (this.state.contacts.filter(contact => contact.name.toLowerCase().includes(this.state.filter.toLowerCase())))
+  handleDeleteContact = id => {
+    this.setState(prev => ({contacts: [...prev.contacts.filter(contact => contact.id !== id )]}))
   }
+
+  filteredContacts = () => {
+    return this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
+  };
 
   render() {
     const { contacts, filter } = this.state;
-    const filteredData = this.filteredContact()
+    const filteredData = this.filteredContacts();
     return (
-      <div className='wrapper'>
-      <h1>Phonebook</h1>
+      <div className="wrapper">
+        <h1>Phonebook</h1>
         <Form addContact={this.handleAddContact} />
         {contacts.length ? (
           <>
             <h2>Contacts</h2>
-            <Filter onChange={this.handleChangeInput} filter={filter}/>
-            <ContactsList contacts={filteredData} />
+            <Filter
+              onFilterChange={this.handleChangeInput}
+              filterValue={filter}
+            />
+            <ContactsList contacts={filteredData} filterValue={filter} deleteContact={this.handleDeleteContact}/>
           </>
         ) : (
           'There are no contacts'

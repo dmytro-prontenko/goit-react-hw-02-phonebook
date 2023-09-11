@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Filter = ({ onChange }) => {
+const Filter = ({ onFilterChange, filterValue }) => {
   return (
     <div className='filter'>
       <label className='filter-label' htmlFor="contact-filter">
         Find contact by name
-        <input onChange={onChange} name="filter" id="contact-filter"></input>
+        <input onChange={onFilterChange} name="filter" id="contact-filter" filter={filterValue}></input>
       </label>
     </div>
   );

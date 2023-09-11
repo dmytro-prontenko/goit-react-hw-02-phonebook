@@ -24,6 +24,13 @@ code {
   margin: 20px;
 }
 
+.contact-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 300px;
+}
+
 .filter-label {
   display: flex;
   flex-direction: column;
