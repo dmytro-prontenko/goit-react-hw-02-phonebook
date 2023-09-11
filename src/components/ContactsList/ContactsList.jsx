@@ -1,4 +1,3 @@
-import Filter from 'components/Filter/Filter';
 import React from 'react';
 import PropTypes from 'prop-types';
 
