@@ -1,13 +1,7 @@
 import React from 'react';
 
 const AddContact = props => {
-  const {
-    inputNameChanger,
-    inputNumberChanger,
-    inputName,
-    inputNumber,
-    addContact,
-  } = props;
+  const { inputChanger, inputName, inputNumber, addContact } = props;
   return (
     <>
       <h2>Name</h2>
@@ -21,7 +15,7 @@ const AddContact = props => {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
-            onChange={inputNameChanger}
+            onChange={inputChanger}
             value={inputName}
           />
         </li>
@@ -35,7 +29,7 @@ const AddContact = props => {
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            onChange={inputNumberChanger}
+            onChange={inputChanger}
             value={inputNumber}
           />
         </li>

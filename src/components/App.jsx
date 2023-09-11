@@ -4,39 +4,41 @@ import { nanoid } from 'nanoid';
 import ContactsList from './ContactsList/ContactsList';
 import Filter from './Filter/Filter';
 
+const INITIAL_STATE = {
+  contacts: [],
+  name: '',
+  number: '',
+  filter: '',
+};
+
 class App extends React.Component {
   state = {
-    contacts: [],
-    name: '',
-    number: '',
-    filter: '',
+    ...INITIAL_STATE,
   };
 
-  handleNameChangeInput = e => {
-    this.setState({ name: e.target.value });
-  };
-  handleNumberChangeInput = e => {
-    this.setState({ number: e.target.value });
+  handleChangeInput = e => {
+    console.log(e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handleAddContact = () => {
-    //TODO додати перевірку на введені значення
     const contactExists = this.state.contacts.some(
       contact => contact.name === this.state.name
     );
-
-    if (!contactExists) {
-      this.setState(prev => ({
-        contacts: [
-          ...prev.contacts,
-          { id: nanoid(), name: this.state.name, number: this.state.number },
-        ],
-        name: '',
-        number: '',
-      }));
-    } else {
-      alert(`${this.state.name} is already exist in contacts`);
-      this.setState({ name: '', number: '' });
+    if (this.state.name && this.state.number) {
+      if (!contactExists) {
+        this.setState(prev => ({
+          contacts: [
+            ...prev.contacts,
+            { id: nanoid(), name: this.state.name, number: this.state.number },
+          ],
+          name: '',
+          number: '',
+        }));
+      } else {
+        alert(`${this.state.name} is already exist in contacts`);
+        this.setState({ name: '', number: '' });
+      }
     }
   };
 
@@ -44,15 +46,16 @@ class App extends React.Component {
     const { state } = this;
     return (
       <>
-        <AddContact
-          addContact={this.handleAddContact}
-          inputNameChanger={this.handleNameChangeInput}
-          inputNumberChanger={this.handleNumberChangeInput}
-          inputName={state.name}
-          inputNumber={state.number}
-        />
-        <Filter />
-        <ContactsList contacts={state.contacts} />
+        <form>
+          <AddContact
+            addContact={this.handleAddContact}
+            inputChanger={this.handleChangeInput}
+            inputName={state.name}
+            inputNumber={state.number}
+          />
+          <Filter />
+          <ContactsList contacts={state.contacts} />
+        </form>
       </>
     );
   }
