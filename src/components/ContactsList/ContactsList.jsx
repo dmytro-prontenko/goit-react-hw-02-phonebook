@@ -1,6 +1,7 @@
+import Filter from 'components/Filter/Filter';
 import React from 'react';
 
-const ContactsList = ({ contacts }) => {
+const ContactsList = ({ contacts, onChange }) => {
   const dataToInsert = contacts.map(contact => {
     return (
       <li className="contact-item" id={contact.id} key={contact.id}>
@@ -9,12 +10,9 @@ const ContactsList = ({ contacts }) => {
     );
   });
   return (
-    contacts.length !== 0 && (
-      <>
-        <h2>Contacts</h2>
-        {dataToInsert}
-      </>
-    )
+    <>
+      <ul className="contacts-list">{dataToInsert}</ul>
+    </>
   );
 };
 
